@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   Link,
-  Outlet,
   useParams,
 } from "react-router-dom";
 import "./App.css";
@@ -15,49 +14,36 @@ export default function App() {
   return (
     <Router>
       <h2>TV APPS</h2>
-
-      <span>
+      <Link to="/netflix">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg"
-          width="150"
-          alt="Netflix"
+          alt=" "
           className="nf"
-          // onClick={() => handleShow(product)}
         />
-      </span>
-      <span>
+      </Link>
+      <Link to="/hbomax">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg"
-          width="150"
-          alt="HBO MAX"
+          alt=" "
           className="hb"
-          // onClick={() => handleShow(product)}
         />
-      </span>
-      <span>
+      </Link>
+      <Link to="/hulu">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg"
-          width="150"
-          alt="Hulu"
+          alt=" "
           className="hu"
-          // onClick={() => handleShow(product)}
         />
-      </span>
-      <span>
+      </Link>
+      <Link to="/PrimeVideo">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
-          width="150"
-          alt="Prime Video"
+          alt=" "
           className="pr"
-          // onClick={() => handleShow(product)}
         />
-      </span>
-
+      </Link>
       <Routes>
-        <Route path="/" element={<Child />}>
-          <Route path="/" element={<Child />} />
-          <Route path=":slug" element={<Child />} />
-        </Route>
+        <Route path="/:id" element={<Child />} />
       </Routes>
     </Router>
   );
@@ -65,41 +51,39 @@ export default function App() {
 
 function Child() {
   // Below this comment, there's one major key script missing
-  // const { slug } = useParams();
-  // const child = Tv[slug];
-  // const { id } = child;
+  const {id} = useParams();
+
   return (
     <div>
-       <h3>
-           {/* You Selected:<span>{id}</span> */}
-        </h3> 
+      <h3>
+        You Selected:<span>{id}</span>
+      </h3>
     </div>
   );
 }
 
-const Tv = {
-  1:  {
-    id: "Netflix"},
-
-  2: {
-    id: "HBO Max"},
-
-  3: {
-    id: "Hulu"},
-
-  4: {
-    id: "Prime Video"},
+const Tvs = {
+  netflix: {
+    name: "Netflix",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg",
+    alt: " Netflix",
+  },
+  hbomax: {
+    name: "HBO Max",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg",
+    alt: "HBO Max",
+  },
+  hulu: {
+    name: "Hulu",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg",
+    alt: "Hulu",
+  },
+  PrimeVideo: {
+    name: "Prime Video",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
+    alt: "Prime Video",
+  },
 };
-
-// function ChildList() {
-//   return(
-//     {Object.entries(Tv).map(([slug,{id}]) =>( 
-//         <h3 key={slug}>
-//           <Link to={`/${slug}`}>
-//           You Selected:<span>{id}</span>
-//           </Link>
-//         </h3> 
-//      ))}
-    
-//   )
-// }
